@@ -1,0 +1,34 @@
+{
+    "name": "FishingRodActions",
+    "maps": [
+        {
+            "name": "Standard",
+            "id": "0f8986ee-23e0-4c37-b248-18a3308dff34",
+            "actions": [
+                {
+                    "name": "Tilt",
+                    "type": "Value",
+                    "id": "ce2e5d78-b31b-4156-b40e-5ee2955d1a83",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cd262628-f5c8-4313-a46e-294e026cafdc",
+                    "path": "<AttitudeSensor>/attitude",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tilt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
