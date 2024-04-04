@@ -28,6 +28,7 @@ public class Fish : MonoBehaviour
         {
             // Suma puntos a la caña de pescar
             collision.gameObject.GetComponent<FishingRod>().AddPoints();
+            Debug.Log("me tocó el pez");
             // Desactiva el pez para que pueda ser reutilizado
             gameObject.SetActive(false);
         }

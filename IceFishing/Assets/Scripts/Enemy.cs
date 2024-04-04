@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         {
             // Resta una vida a la caña de pescar
             collision.gameObject.GetComponent<FishingRod>().LoseLife();
+                Debug.Log("me tocó el enemigo");
             // Desactiva el enemigo para que pueda ser reutilizado
             gameObject.SetActive(false);
         }
