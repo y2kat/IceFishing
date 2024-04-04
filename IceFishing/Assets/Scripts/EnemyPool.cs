@@ -7,8 +7,20 @@ public class EnemyPool : MonoBehaviour
     public GameObject enemyPrefab;
     public int poolSize = 10;
     private List<GameObject> enemyPool;
+    private Coroutine spawnEnemiesCoroutine;
 
-    void Start()
+    public void InitializePool()
+    {
+        enemyPool = new List<GameObject>();
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.SetActive(false);
+            enemyPool.Add(enemy);
+        }
+    }
+
+    /*void Start()
     {
         //crea el pool de enemigos
         enemyPool = new List<GameObject>();
@@ -19,8 +31,9 @@ public class EnemyPool : MonoBehaviour
             enemyPool.Add(enemy);
         }
         //comienza a spawnear enemigos
-        StartCoroutine(SpawnEnemies());
-    }
+        //StartCoroutine(SpawnEnemies());
+        spawnEnemiesCoroutine = StartCoroutine(SpawnEnemies());
+    }*/
 
     IEnumerator SpawnEnemies()
     {
@@ -37,6 +50,30 @@ public class EnemyPool : MonoBehaviour
             }
             //espera un tiempo antes de spawnear el próximo enemigo
             yield return new WaitForSeconds(Random.Range(2, 4));
+        }
+    }
+
+    public void ResetPool()
+    {
+        if (enemyPool != null)
+        {
+            foreach (GameObject enemy in enemyPool)
+            {
+                enemy.SetActive(false);
+            }
+        }
+        if (spawnEnemiesCoroutine != null)
+        {
+            StopCoroutine(spawnEnemiesCoroutine);
+            spawnEnemiesCoroutine = null;
+        }
+    }
+
+    public void StartSpawning()
+    {
+        if (spawnEnemiesCoroutine == null)
+        {
+            spawnEnemiesCoroutine = StartCoroutine(SpawnEnemies());
         }
     }
 }

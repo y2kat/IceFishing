@@ -11,6 +11,17 @@ public class FishingRod : MonoBehaviour
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI pointsText;
 
+    public PanelManager panelManager;
+    public Menu menu;
+
+    [SerializeField] Vector3 initialPosition;
+
+    void Start()
+    {
+        initialPosition = transform.position;
+    }
+
+
     void Update()
     {
         livesText.text = "Vidas: " + lives;
@@ -22,13 +33,30 @@ public class FishingRod : MonoBehaviour
         lives--;
         if (lives <= 0)
         {
-            //si la caña de pescar se queda sin vidas, desactiva la caña de pescar
-            gameObject.SetActive(false);
+            GameOver();
         }
     }
 
     public void AddPoints()
     {
         points++;
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+        Time.timeScale = 0;
+
+        menu.showDeathScreen();
+    }
+
+    public void ResetGame()
+    {
+        lives = 3;
+        points = 0;
+
+        transform.position = initialPosition;
+
+        Time.timeScale = 1;
     }
 }
