@@ -6,6 +6,7 @@ public class Gyro : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     float moveSpeed = 5f; // Velocidad de movimiento
+    float smoothFactor = 0.5f; // Factor de suavizado
 
     void Start()
     {
@@ -21,8 +22,8 @@ public class Gyro : MonoBehaviour
         //calcula la velocidad de movimiento vertical
         float verticalVelocity = dirY * moveSpeed;
 
-        //aplica la velocidad al personaje
-        rb.velocity = new Vector3(0f, verticalVelocity, 0f);
+        //aplica la velocidad al personaje con suavizado
+        rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0f, verticalVelocity, 0f), smoothFactor);
 
         // limita la posición y del objeto a los límites de la pantalla
         var pos = Camera.main.WorldToViewportPoint(transform.position);
